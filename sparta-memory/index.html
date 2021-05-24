@@ -27,50 +27,49 @@
             <h2>이마트24 스타필드안성</h2>
             <h3>경기도 안성시 공도읍 진사리 364-3</h3>
             <p>
-				의류 매장 아르바이트를 가면 밥을 먹기위해 편의점에 간다. <br/>
-				식비가 별도이기 때문에 최대한의 가성비로 가볍게 먹고, <br/>
-				잠시나마 남은 시간 동안 앉아 에어팟을 꽂고 예능을 보며 웃음을 충전한다.
+                의류 매장 아르바이트를 가면 밥을 먹기위해 편의점에 간다. <br/>
+                식비가 별도이기 때문에 최대한의 가성비로 가볍게 먹고, <br/>
+                잠시나마 남은 시간 동안 앉아 에어팟을 꽂고 예능을 보며 웃음을 충전한다.
             </p>
         </div>
     </div>
 
     <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=99a72c7a48841b3bde9f98fd6c004f1c"></script>
     <script>
-        var position = new kakao.maps.LatLng(36.99516583217783, 127.14828572578415);
-        var mapPlace = document.querySelector('h2').innerText;
-
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        const position = new kakao.maps.LatLng(36.99516583217783, 127.14828572578415); // 위도, 경도
+        const mapPlace = document.querySelector('h2').innerText; // 위치명
+        let mapContainer = document.getElementById('map'),
             mapOption = { 
                 center: position,
                 level: 3,
             };
-
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성
+        const map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성
 
         // 마커
-        var imageSrc = "https://image.flaticon.com/icons/png/512/727/727606.png",
+        const imageSrc = "https://image.flaticon.com/icons/png/512/727/727606.png",
             imageSize = new kakao.maps.Size(65, 65);
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-        var marker = new kakao.maps.Marker({
+        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+        let marker = new kakao.maps.Marker({
             map,
             position,
             image : markerImage
         });
 
-        var zoomControl = new kakao.maps.ZoomControl(); // 지도 확대, 축소
-        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        const zoomControl = new kakao.maps.ZoomControl(); // 지도 확대, 축소 제어
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // 제어 컨트롤 위치
 
-        var iwContent = `<div class="iwContent">${mapPlace}</div>`; // 인포윈도우에 표시할 내용
-
-        var infoWindow = new kakao.maps.InfoWindow({ // 인포윈도우 생성
+        const iwContent = `<div class="iwContent">${mapPlace}</div>`; // 표시할 내용
+        let infoWindow = new kakao.maps.InfoWindow({ // 인포윈도우 생성
             content : iwContent
         });
 
-        kakao.maps.event.addListener(marker, 'mouseover', function() { // 마커 마우스오버 이벤트 = 인포윈도우를 마커위에 표시
+        // mouseover : 인포윈도우를 마커위에 표시
+        kakao.maps.event.addListener(marker, 'mouseover', function() {
             infoWindow.open(map, marker);
         });
 
-        kakao.maps.event.addListener(marker, 'mouseout', function() { // 마커 마우스아웃 이벤트 = 인포윈도우 제거
+        // mouseout : 인포윈도우 제거
+        kakao.maps.event.addListener(marker, 'mouseout', function() {
             infoWindow.close();
         });
     </script>
