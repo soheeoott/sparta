@@ -45,7 +45,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
     margin-top: 40px;
     margin: 30px auto 30px auto;
 }
@@ -55,6 +54,11 @@
     height: 500px;
     margin-right: 30px;
     border-radius: 24px;
+}
+
+.iwContent{
+    margin:2px 0 0 10px; 
+    font-size:18px;
 }
 
 .story{
