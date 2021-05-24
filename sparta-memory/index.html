@@ -56,6 +56,23 @@
             position,
             image : markerImage
         });
+
+        var zoomControl = new kakao.maps.ZoomControl(); // 지도 확대, 축소
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+        var iwContent = `<div class="iwContent">${mapPlace}</div>`; // 인포윈도우에 표시할 내용
+
+        var infoWindow = new kakao.maps.InfoWindow({ // 인포윈도우 생성
+            content : iwContent
+        });
+
+        kakao.maps.event.addListener(marker, 'mouseover', function() { // 마커 마우스오버 이벤트 = 인포윈도우를 마커위에 표시
+            infoWindow.open(map, marker);
+        });
+
+        kakao.maps.event.addListener(marker, 'mouseout', function() { // 마커 마우스아웃 이벤트 = 인포윈도우 제거
+            infoWindow.close();
+        });
     </script>
 </body>
 </html>
